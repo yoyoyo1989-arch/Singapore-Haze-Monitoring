@@ -1,0 +1,7 @@
+{
+  "name": "haze-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Singapore haze (NEA PSI) and ASEAN weather (Open-Meteo) monitor",
+  "engines": { "node": ">=18" }
+}
