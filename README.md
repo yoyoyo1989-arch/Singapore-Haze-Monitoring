@@ -1,23 +1,30 @@
-# Haze monitor
+# Auditor timesheets
 
-Singapore haze (NEA 24-hour PSI and PM2.5 via data.gov.sg) and ASEAN city weather (Open-Meteo).
+A single-page prototype for monthly auditor timesheets: staff log hours and transport claims, the manager approves, marks pending or rejects, and drafts an email to the staff member.
 
-## Files
+- Months: use the month picker at the top. Each month has its own timesheets; the deadline is the 25th of the following month.
+- Manager view: a list with tabs (All, Pending, Approved, Rejected, Not submitted) and a detail panel for each timesheet with Approve, Mark pending and Reject.
+- Jobs: **Manage jobs** adds, edits and deletes jobs. Edits update every timesheet using the job. On a timesheet, each row has a job picker to change its job.
+- Team: **Manage team** adds, renames or removes people. Removing someone deletes their timesheets in every month.
+- Edit: managers can open any timesheet and choose **Edit timesheet**. Approved or pending sheets are reopened as Not submitted.
+- Static site: one `index.html`, no build step, no dependencies.
+- Data is stored in the visitor's browser (`localStorage`). There is no login or backend yet.
+- Fonts load from Google Fonts; the page falls back to system fonts if offline.
 
-- `index.html` – the whole app (no build step)
-- `api/psi.js` – optional Vercel function that proxies and caches the NEA PSI feed (5 min)
-- `vercel.json` – clean URLs and basic security headers
-- `package.json` – sets the Node version for the function
-
-## Deploy
+## Deploy to Vercel
 
 1. Push this folder to a GitHub repository (files at the repo root).
-2. In Vercel choose **Add New → Project**, import the repo.
-3. Framework preset: **Other**. Leave build command and output directory empty. Deploy.
+2. In Vercel, choose **Add New → Project** and import the repository.
+3. Framework preset: **Other**. Leave Build Command and Output Directory empty.
+4. Click **Deploy**.
 
-The page calls `/api/psi` first and falls back to data.gov.sg directly, so it still works as a plain static site or when opened locally. Open-Meteo is called straight from the browser.
+Or from the command line: `npx vercel --prod` in this folder.
 
-## Data credits
+## Run locally
 
-- Haze data: National Environment Agency (NEA) via data.gov.sg, under the Singapore Open Data Licence.
-- Weather data: Open-Meteo.com (CC BY 4.0).
+Open `index.html` in a browser, or run `npx serve .`.
+
+## Next steps
+
+- Real login and shared storage, so staff and manager see the same data.
+- Server-side email sending (the prototype only opens a mail draft).
